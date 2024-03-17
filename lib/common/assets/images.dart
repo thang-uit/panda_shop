@@ -6,4 +6,5 @@ class ConstantImages {
   static const String appLogoTransCircle = "assets/logos/logo_trans_circle.png";
   static const String appLogoTransFull = "assets/logos/logo_trans_full.png";
   static const String appLogoTransOnlyPanda = "assets/logos/logo_trans_only_panda.png";
+  static const String appLogoTransCircle750 = "assets/logos/logo_trans_circle_750.png";
 }

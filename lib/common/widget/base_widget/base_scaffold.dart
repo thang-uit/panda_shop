@@ -1,7 +1,8 @@
 import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
+import 'package:panda_shop/common/widget/base_widget/base_stateless.dart';
 
-class BaseScaffold extends StatelessWidget {
+class BaseScaffold extends BaseStatelessWidget {
   const BaseScaffold(
       {super.key,
       this.body,
@@ -14,8 +15,25 @@ class BaseScaffold extends StatelessWidget {
   final Widget? bottomSheet;
   final AppBar? appBar;
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     // backgroundColor: backgroundColor ?? ConstantColors.primary,
+  //     resizeToAvoidBottomInset: true,
+  //     // should be true for seeing content in login page, when keyboard is up
+  //     appBar: appBar,
+  //     body: GestureDetector(
+  //         onLongPress: () {
+  //           BetterFeedback.of(context).showAndUploadToSentry();
+  //         },
+  //         child: body ?? Container()),
+  //     bottomSheet: bottomSheet,
+  //   );
+  // }
+
   @override
-  Widget build(BuildContext context) {
+  Widget buildWidget(
+      BuildContext context, bool isDarkMode, Color colorThemeMode) {
     return Scaffold(
       // backgroundColor: backgroundColor ?? ConstantColors.primary,
       resizeToAvoidBottomInset: true,

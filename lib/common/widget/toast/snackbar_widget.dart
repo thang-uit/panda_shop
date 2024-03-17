@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:panda_shop/utils/constant/colors.dart';
 import 'package:panda_shop/utils/constant/enums.dart';
 import 'package:panda_shop/utils/constant/font_styles.dart';
+import 'package:panda_shop/utils/logging/logger.dart';
 
 class SnackBarUtil {
   static final List<_SnackBarMessage> _messageQueue = <_SnackBarMessage>[];
@@ -10,10 +11,12 @@ class SnackBarUtil {
 
   static void show(String message,
       {String title = 'Panda', ToastType type = ToastType.info}) {
-    _messageQueue.add(_SnackBarMessage(title, message, type));
-    if (!_isShowing) {
-      _showNextMessage();
-    }
+    // _messageQueue.add(_SnackBarMessage(title, message, type));
+    // if (!_isShowing) {
+    //   _showNextMessage();
+    // }
+
+    _showMessage(title, message, type);
   }
 
   static Future<void> _showNextMessage() async {
@@ -58,17 +61,33 @@ class SnackBarUtil {
       message,
       titleText: Text(
         title,
-        style: bodyLarge?.copyWith(fontWeight: FontWeight.bold, color: color),
+        style: bodyLarge?.copyWith(
+            fontWeight: FontWeight.bold, color: ConstantColors.white),
       ),
-      icon: Icon(icon, color: color),
-      backgroundColor: ConstantColors.grey,
+      icon: Icon(icon, color: ConstantColors.white),
+      backgroundColor: color.withOpacity(0.7),
+      snackPosition: SnackPosition.TOP,
+      // boxShadows: [
+      //   const BoxShadow(
+      //     color: Colors.grey,
+      //     offset: Offset(0.0, 2.0), // (x,y)
+      //     blurRadius: 6.0,
+      //   ),
+      // ],
       messageText: Text(message,
-          style: bodyMedium?.copyWith(color: ConstantColors.black)),
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      duration: const Duration(seconds: 5),
+          style: bodyMedium?.copyWith(color: ConstantColors.white)),
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 14),
+      duration: const Duration(seconds: 4),
+      mainButton: TextButton(
+          onPressed: Get.back,
+          child: const Icon(
+            Icons.close_rounded,
+            color: ConstantColors.white,
+          )),
     );
+    LoggerMan.debug("Show snackbar title: $title | message: $message");
 
-    await Future<dynamic>.delayed(const Duration(seconds: 6));
+    // await Future<dynamic>.delayed(const Duration(seconds: 5));
   }
 }
 
